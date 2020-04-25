@@ -4,43 +4,48 @@ const uuidv1 = require('uuid/v1');
 
 var Schema = mongoose.Schema;
 
-var userSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-    maxlength: 32,
-    trim: true //remove spaces
+var userSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      maxlength: 32,
+      trim: true //remove spaces
+    },
+    lastname: {
+      type: String,
+      maxlength: 32,
+      trim: true
+    },
+    email: {
+      type: String,
+      trim: true,
+      required: true,
+      unique: true
+    },
+    userinfo: {
+      type: String,
+      trim: true
+    },
+    //  check later for hashing password
+    encry_password: {
+      type: String,
+      required: true
+    },
+    salt: String,
+    role: {
+      type: Number,
+      default: 0
+    },
+    purchases: {
+      type: Array,
+      default: [] // when user buys, push into array
+    }
   },
-  lastname: {
-    type: String,
-    maxlength: 32,
-    trim: true
-  },
-  email: {
-    type: String,
-    trim: true,
-    required: true,
-    unique: true
-  },
-  userinfo: {
-    type: String,
-    trim: true
-  },
-  //  check later for hashing password
-  encry_password: {
-    type: String,
-    required: true
-  },
-  salt: String,
-  role: {
-    type: Number,
-    default: 0
-  },
-  purchases: {
-    type: Array,
-    default: [] // when user buys, push into array
+  {
+    timestamps: true //records the time, when it was created
   }
-});
+);
 
 // virtual fields
 
@@ -78,5 +83,3 @@ userSchema.method = {
 };
 
 module.exports = mongoose.model('User', userSchema);
-
-// watch again
