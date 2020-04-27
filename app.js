@@ -1,13 +1,13 @@
-require('dotenv').config();
+require("dotenv").config();
 
-const mongoose = require('mongoose');
-const express = require('express');
+const mongoose = require("mongoose");
+const express = require("express");
 const app = express();
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const cors = require('cors');
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
-const authRoutes = require('./routes/auth');
+const authRoutes = require("./routes/auth");
 
 //DB Connection
 mongoose
@@ -17,7 +17,7 @@ mongoose
     useCreateIndex: true
   })
   .then(() => {
-    console.log('DB CONNECTED');
+    console.log("DB CONNECTED");
   });
 
 //Middlewares
@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use(cors());
 
 //My Routes
-app.use('/api', authRoutes);
+app.use("/api", authRoutes);
 
 //PORT
 const port = process.env.PORT || 8000;
