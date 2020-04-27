@@ -1,12 +1,13 @@
-const mongoose = require('mongoose');
-const { ObjectId } = mongoose.Schema; //coming from another scema
+const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema;
+
 const productSchema = new mongoose.Schema(
   {
     name: {
       type: String,
       trim: true,
       required: true,
-      maxlength: 12
+      maxlength: 32
     },
     description: {
       type: String,
@@ -20,10 +21,9 @@ const productSchema = new mongoose.Schema(
       maxlength: 32,
       trim: true
     },
-    //for category, pull from category schema
     category: {
       type: ObjectId,
-      ref: 'Category', //name of category schema
+      ref: "Category",
       required: true
     },
     stock: {
@@ -33,14 +33,12 @@ const productSchema = new mongoose.Schema(
       type: Number,
       default: 0
     },
-    photos: {
+    photo: {
       data: Buffer,
       contentType: String
     }
   },
-  {
-    timestamps: true
-  }
+  { timestamps: true }
 );
 
-module.exports = mongoose.model('Product', productSchema);
+module.exports = mongoose.model("Product", productSchema);

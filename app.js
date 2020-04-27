@@ -26,12 +26,7 @@ app.use(cookieParser());
 app.use(cors());
 
 //My Routes
-
-app.use('/api', authRoutes); //api is a prefix. we are calling authRoutes here
-
-// app.use('/', (req, res) => {
-//   res.send('hello');
-// });
+app.use('/api', authRoutes);
 
 //PORT
 const port = process.env.PORT || 8000;
